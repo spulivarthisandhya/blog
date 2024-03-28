@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            color: red;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        h2 {
+            color: #333;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        p {
+            margin-bottom: 20px;
+        }
+        small {
+            color: #777;
+        }
+        body{
+        background-size: cover;
+        background-image:url('https://cdn.pixabay.com/photo/2015/01/20/14/27/office-605503_1280.jpg');
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>FOOD BLOG POSTS</h1>
+        {% for i in posts %}
+        <div class="post">
+            <h2>{{ i[1] }}</h2>
+            <p>{{ i[2] }}</p>
+            <small>posted at: {{ i[3] }}</small>
+            <form  method="POST" action="{{url_for('delete_post',id=i[0])}}" onsubmit="return confirm('Are you sure you want to delete this post?');">
+            <button>Delete</button>
+            <form  method="GET" action="{{url_for('update_post',id=i[0])}}" onsubmit="return confirm('Are you sure you want to edit this post?');">
+            <button>edit</button>
+            </form>
+        </div>
+        {% endfor %}
+    </div>
+    
+</body>
+</html>
